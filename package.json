@@ -1,0 +1,24 @@
+{
+  "name": "kotmpl",
+  "version": "1.0.0",
+  "description": "template for SPA app with KnockoutJS as main framework",
+  "main": "server.js",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mark-archer/kotmpl.git"
+  },
+  "author": "Mark Archer",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/mark-archer/kotmpl/issues"
+  },
+  "homepage": "https://github.com/mark-archer/kotmpl#readme"
+}
