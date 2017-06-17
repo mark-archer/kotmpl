@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Host</title>
+    <!--<link rel="icon" type="image/png" href="/images/favicon.ico">-->
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/images/favicons/manifest.json">
+    <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- jquery -->
+    <script src="/scripts/lib/jquery.min.js"></script>
+
+    <!-- jquery.caret -->
+    <script src="/scripts/lib/jquery.caret.js"></script>
+
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="/scripts/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="/scripts/lib/bootstrap-theme.min.css">
+    <script src="/scripts/lib/bootstrap.min.js"></script>
+
+    <!-- knockout -->
+    <script src="/scripts/lib/knockout-min.js"></script>
+    <script src="/scripts/knockout-plugins.js"></script>
+
+    <!-- underscore -->
+    <script src="/scripts/lib/underscore-min.js"></script>
+
+    <!-- socket.io -->
+    <script src="/scripts/lib/socket.io.min.js"></script>
+
+    <!-- moment -->
+    <!-- todo: load this using require when needed -->
+    <script src="/scripts/lib/moment.js"></script>
+
+    <!-- jquery ui -->
+    <link rel="stylesheet" href="/scripts/lib/jquery-ui.min.css">
+    <link rel="stylesheet" href="/scripts/lib/jquery-ui.structure.min.css">
+    <script src="/scripts/lib/jquery-ui.min.js"></script>
+
+    <!-- datetime picker -->
+    <link rel="stylesheet" href="/scripts/lib/bootstrap-datetimepicker.css">
+    <script src="/scripts/lib/bootstrap-datetimepicker.js"></script>
+
+    <!-- ui.css -->
+    <link rel="stylesheet" href="/html/ui.css">
+
+    <!-- js-cookie -->
+    <script src="/scripts/lib/js-cookies.js"></script>
+
+    <!-- SBAdmin stuff -->
+    <link href="/SBAdmin/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="/SBAdmin/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/SBAdmin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- requirejs and call to ui.js -->
+    <script data-main="/html/group" src="/scripts/lib/require.js"></script>
+
+</head>
+<body>
+
+<div id="wrapper">
+    <!-- Navigation -->
+    <div style="margin-bottom: 50px"><!-- padding for fixed navbar --></div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" data-bind="attr: {href:window.location.pathname}">
+                    Group:
+                    <span data-bind="text: window.location.pathname"></span>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <!--<li><a href="About">About</a></li>-->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!--<li><a href="#">User Info</a></li>-->
+                </ul>
+            </div>
+        </div>
+
+        <div class="navbar-default sidebar small small" style="font-size:x-small" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <!--<li class="sidebar-search">-->
+                        <!--<div class="input-group custom-search-form">-->
+                            <!--<input type="text" class="form-control" placeholder="Search...">-->
+                                <!--<span class="input-group-btn">-->
+                                    <!--<button class="btn btn-default" type="button">-->
+                                        <!--<i class="fa fa-search"></i>-->
+                                    <!--</button>-->
+                                <!--</span>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; /input-group &ndash;&gt;-->
+                    <!--</li>-->
+                    <li>
+                        <a href="#members">
+                            <i class="fa fa-users fa-fw"></i> Members
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="true">
+                            <li>
+                                <a href="#newScript" data-bind="click: newScript">
+                                    <span class="btn btn-xs glyphicon glyphicon-plus"></span>
+                                    new
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-sitemap fa-fw"></i>Sub Groups
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="true">
+                            <li>
+                                <a href="#newScript" data-bind="click: newGroup">
+                                    <span class="btn btn-xs glyphicon glyphicon-plus"></span>
+                                    new
+                                </a>
+                            </li>
+                            <!-- ko foreach:groups -->
+                            <li>
+                                <a href="#" data-bind="text: name, attr:{href:window.location.pathname.substring(1) + '/' + name}"></a>
+                            </li>
+                            <!-- /ko -->
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i>Types<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="true">
+                            <li>
+                                <a href="#newType" data-bind="click: newType">
+                                    <span class="btn btn-xs glyphicon glyphicon-plus"></span>
+                                    new
+                                </a>
+                            </li>
+                            <!-- ko foreach:types -->
+                            <li>
+                                <a href="#" data-bind="text: name, attr:{href:'#'+name}, click: function(){obj($data); return true;}"></a>
+                            </li>
+                            <!-- /ko -->
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-code fa-fw"></i>
+                            Functions
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="true">
+                            <li>
+                                <a href="#newFn" data-bind="click: newFn">
+                                    <span class="btn btn-xs glyphicon glyphicon-plus"></span>
+                                    new
+                                </a>
+                            </li>
+                            <!-- ko foreach:fns -->
+                            <li>
+                                <a href="#" data-bind="text: name, attr:{href:'#'+name}, click: function(){obj($data); return true;}"></a>
+                            </li>
+                            <!-- /ko -->
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-file-code-o fa-fw"></i>Scripts
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="true">
+                            <li>
+                                <a href="#newScript" data-bind="click: newScript">
+                                    <span class="btn btn-xs glyphicon glyphicon-plus"></span>
+                                    new
+                                </a>
+                            </li>
+                            <!-- ko foreach:scripts -->
+                            <li>
+                                <a href="#" data-bind="text: name, attr:{href:'#'+name}, click: function(){obj($data); return true;}"></a>
+                            </li>
+                            <!-- /ko -->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+        <!-- /.navbar-static-side -->
+    </nav>
+    <!-- /Navigation -->
+
+
+    <div id="page-wrapper">
+        <!-- Page Content -->
+        <div class="container-fluid body-content">
+
+            <br />
+            <error-viewer params="error: error"></error-viewer>
+            <ui params="ui: ui, obj: obj"></ui>
+
+        </div>
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+<!-- Metis Menu Plugin JavaScript -->
+<script src="/SBAdmin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="/SBAdmin/dist/js/sb-admin-2.js"></script>
+
+
+</body>
+</html>

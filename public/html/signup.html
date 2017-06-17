@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Sign up · Host</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/images/favicons/manifest.json">
+    <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="/scripts/lib/bootstrap.min.css">
+
+    <!-- Optional bootstrap theme -->
+    <link rel="stylesheet" href="/scripts/lib/bootstrap-theme.min.css">
+
+    <!-- jquery -->
+    <script src="/scripts/lib/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="/scripts/lib/bootstrap.min.js"></script>
+
+    <!-- knockout -->
+    <script src="/scripts/lib/knockout-min.js"></script>
+
+    <!-- underscore -->
+    <script src="/scripts/lib/underscore-min.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- TODO: take this out -->
+        <div class="col-md-offset-3 col-md-6">
+            <h3>Sorry, Host is not publicly available yet.
+                Please contact <a href="mailto:support@ubo.us">support@ubo.us</a>
+                if you're interested in participating in the closed beta.
+            </h3>
+            <a href="/signin">Have an account? Sign in</a>
+        </div>
+
+        <div class="col-md-offset-4 col-md-4 hidden">
+
+            <h1>Sign up
+                <small><small>
+                    <a href="/signin">Have an account? Sign in</a>
+                </small></small>
+            </h1>
+
+            <form>
+
+                <div class="form-group">
+                    <input class="form-control" placeholder="username" type="text" data-bind="value: username" autofocus />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="password" type="password" data-bind="value: password" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="password again" type="password" data-bind="value: password2" />
+                </div>
+
+                <div class="form-group pull-right">
+                    <button class="btn btn-primary " data-bind="click: submit">Submit</button>
+                </div>
+
+            </form>
+
+
+            <div class="form-group">
+                <!-- ko if: errMsg -->
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" data-bind="click: clearErr" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Error:</strong> <span data-bind="text: errMsg"></span>
+                </div>
+                <!-- /ko -->
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <script>
+        var controller = {
+            username: ko.observable(''),
+            password: ko.observable(''),
+            password2: ko.observable(''),
+            errMsg: ko.observable(''),
+            clearErr: function(){this.errMsg('');}
+        };
+        function errUnpack(err){
+            if(_.isString(err)){
+                var em = controller.errMsg() + '\n';
+                em += err;
+                controller.errMsg(em);
+                return;
+            }
+
+            else if(_.isArray(err)){
+                for(var i = 0; i<err.length; i++){
+                    errUnpack(err[i]);
+                }
+                return;
+            }
+
+            else if(_.isObject(err)){
+                for(var i in err){
+                    if(!err.hasOwnProperty(i)) continue;
+                    var en = i;
+                    var ev = err[i];
+                    if(_.isString(ev)){
+                        var em = controller.errMsg() + '\n';
+                        em += en + ': ' + ev;
+                        controller.errMsg(em);
+                    } else{
+                        errUnpack(ev);
+                    }
+                }
+            }
+            else {
+                console.log(err);
+                throw "unknown error type";
+            }
+
+        }
+        controller.submit = function(){
+            var username = controller.username();
+            var password = controller.password();
+            var password2 = controller.password2();
+            if(!username) return controller.errMsg('username cannot be blank');
+            if(password != password2) return controller.errMsg('passwords do not match');
+            if(!password) return controller.errMsg('password cannot be blank');
+            var data = {
+                name: username,
+                password: password
+            };
+            data = JSON.stringify(data);
+            $.post('/signup', data, function(data, rsp){
+                controller.errMsg('');
+                if(rsp != 'success') return controller.errMsg(rsp);
+                data = JSON.parse(data);
+                console.log(data);
+                if(data.err) return errUnpack(data.err);
+                window.location = '/'
+            });
+        };
+        ko.applyBindings(controller);
+    </script>
+
+
+</body>
+</html>

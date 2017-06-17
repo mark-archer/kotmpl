@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>UBO</title>
+    <link rel="icon" sizes="16x16 32x32" href="/images/favicons/uboFavicon.ico">
+
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Optional bootstrap theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <!-- jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!-- knockout -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+
+    <!-- underscore -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+
+<style>
+
+    .staff-name{
+
+        position: relative;
+        top:15px
+
+    }
+
+    .navbar-static-top {
+
+        background: transparent;
+        background-color: transparent;
+        height: 50px;
+        /*z-index: 1000;*/
+        /*border-width: 0 0 1px;*/
+    }
+
+    .a-static-offset {
+        position: relative;
+        top: -50px
+    }
+
+    .breadcrumb {
+        float: right;
+        background: none;
+    }
+
+    .breadcrumb li a {
+        color: #000;
+    }
+
+    .logo {
+        width:35px;
+        position: relative;
+        top: -8px;
+    }
+
+    body {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        font-family: "Helvetica Neue", sans-serif;
+    }
+
+    .btn-info {
+        background-color: #F05657;
+        border-color: #F05657;
+        border-width: 5px;
+        font-weight: 300;
+    }
+    .btn-info:hover {
+        background-color: #C04445;
+        border-color: #C04445;
+    }
+
+    .jumbotron {
+        padding: 130px 15px;
+        position: relative;
+        margin-bottom: 30px;
+        color: inherit;
+        background-image: url('/images/typingBanner.jpg');
+        background-size: cover;
+    }
+    .jumbotron h1 {
+        color: #ffffff;
+        font-weight: 100;
+        max-width: 100%;
+    }
+    .jumbotron p {
+        color: #ffffff;
+        font-weight: 100;
+        max-width: 35%;
+    }
+
+
+    @media (min-width: 80px) {
+        .col-lg-3 {
+            width: 25%;
+        }
+    }
+    .feature {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .feature h2 {
+        font-family: 'Helvetica Neue Light', sans-serif;
+        font-weight: 100;
+    }
+    .feature p {
+        max-width: 70%;
+        font-weight: 300;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Fixed height of the footer */
+        height: 60px;
+        background-color: #f5f5f5;
+    }
+    .footer p {
+        padding-left: 15px;
+    }
+</style>
+
+
+<!--navbar whitespace-->
+<div class="navbar-static-top"></div>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#top">
+                <img alt="UBO" src="/images/Logo.png" class="img-rounded logo">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#products">Products</a></li>
+                <li><a href="#consulting">Consulting</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<!-- #top -->
+<a id="top" class="a-static-offset"></a>
+
+<div class="jumbotron" style="min-height: 600px">
+    <div class="container" style="text-align: center;">
+        <h1 style="font-family: 'Helvetica Neue', sans-serif;  font-weight: 100; font-size: 50px;"><strong>UBO, Inc.</strong></h1>
+    </div>
+</div>
+
+<div class="container marketing">
+    <div class="container">
+
+        <div class="row">
+            <!-- #products -->
+            <a id="products" class="a-static-offset"></a>
+            <h1 style="font-family: 'Helvetica Neue Light', sans-serif; font-weight: 100;">Products</h1>
+            <div class="col-md-offset-1 col-md-11">
+                <br />
+                <br />
+
+
+                <!-- Host -->
+                <div class="row">
+                    <div class="col-md-4 col-xs-10">
+                        <a class="btn btn-primary btn-lg" href="/html/signin.html" role="button" style="width: 100%">
+                            Host<span class="pull-right label label-danger">beta</span>
+                        </a>
+                    </div>
+                </div>
+                <br />
+                <div class="row col-md-offset-1">
+                    <p class="lead">
+                        UBO's flagship product.  Host is an asynchronous, distributed, multi-user, programming and runtime environment.
+                        It is designed from the ground up for cross-platform development with an emphasis on cloud-based computing and IoT.
+                    </p>
+                    <p>
+                        <span class="label label-warning">WARNING</span>
+                        At this point in the development cycle all data is intermittently wiped so make sure all your
+                        stuff in Host is backed up somewhere.  If you have any questions about this or want some help feel free to contact us.
+                    </p>
+                </div>
+                <br />
+                <br />
+
+                <!-- meeting finder -->
+                <div class="row">
+                    <div class="col-md-4 col-xs-10">
+                        <a class="btn btn-primary btn-lg" href="http://ec2-52-8-75-81.us-west-1.compute.amazonaws.com/frontpage" role="button" style="width: 100%">Meeting Finder
+                            <span class="pull-right label label-warning">depreciated</span>
+                        </a>
+                    </div>
+                </div>
+                <br />
+                <div class="row col-md-offset-1">
+                    <p class="lead">
+                        Meeting finder lets you collaborate in real-time with other users to find
+                        a meeting time that works for everyone.  It uses an intuitive UI with click-and-drag
+                        interactions and interfaces with your existing calendars.
+                    </p>
+                    <p>
+                        <span class="label label-info">UPDATE</span>
+                        We plan to incorporate our meeting finder capabilities as a module in Ease so we've
+                        halted development on the stand-alone app.
+                        If you're an existing user the current application should continue to work fine for you but new users may
+                        experience difficulties signing on.  If you run into trouble and don't want to wait for
+                        the module in Ease, drop us a line and we'll see if we can get it sorted out for you.
+                    </p>
+                </div>
+                <br />
+                <br />
+
+                <!-- Synamon -->
+                <div class="row">
+                    <div class="col-md-4 col-xs-10">
+                        <a class="btn btn-primary btn-lg" href="http://synamon.meteor.com" role="button" style="width: 100%">
+                            Synamon<span class="pull-right label label-warning">depreciated</span>
+                        </a>
+                    </div>
+                </div>
+                <br />
+                <div class="row col-md-offset-1">
+                    <p class="lead">
+                        Synamon is a web-based mobile application developed to assist behavioral therapists and other caregivers in teaching
+                        children diagnosed with autism synonyms and other language semantics and syntax.
+                    </p>
+                </div>
+                <br />
+                <br />
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- #consulting -->
+            <a id="consulting" class="a-static-offset"></a>
+            <h1 style="font-family: 'Helvetica Neue Light', sans-serif; font-weight: 100;">Consulting</h1>
+            <div class="col-md-offset-1 col-md-11">
+                <h3>Services</h3>
+                <div class="row col-md-offset-1">
+                    <p class="lead">
+                        UBO has highly qualified and experienced professionals on staff who provide services in
+                        Commercial and Enterprise Software Development and Integration,
+                        Project Management, and Finance.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-offset-1 col-md-11 hidden">
+                <h3>Staff</h3>
+
+                <div class="row col-md-offset-1">
+
+                    <div class="col-md-3">
+                        <p class="lead staff-name">
+                            Mark Archer
+                            <a target="_blank" href="https://www.linkedin.com/profile/view?id=11292177">
+                                <img src="/images/linkedin_nav.png" width="25px" height="25px">
+                            </a>
+                        </p>
+                        <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/1/000/02d/2a8/3cb0317.jpg" width="200px" height="200px">
+                    </div>
+
+                    <div class="col-md-3">
+                        <p class="lead  staff-name">
+                            Tristan Biles
+                            <a target="_blank" href="https://www.linkedin.com/profile/view?id=119137561">
+                                <img src="/images/linkedin_nav.png" width="25px" height="25px">
+                            </a>
+                        </p>
+                        <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAANqAAAAJGFhOTBhMjUxLWU1YzYtNDZlNi04YjkzLWI5YTZhNzhjMzJjYg.jpg" width="200px" height="200px">
+                    </div>
+
+                    <div class="col-md-3">
+                        <p class="lead staff-name">
+                            Keith Archer
+                            <a target="_blank" href="https://www.linkedin.com/profile/view?id=135247399">
+                                <img src="/images/linkedin_nav.png" width="25px" height="25px">
+                            </a>
+                        </p>
+                        <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/1/000/0e4/308/367f31b.jpg" width="200px" height="200px">
+                    </div>
+
+                    <div class="col-md-3">
+                        <p class="lead staff-name">
+                            Brian Baca
+                            <a target="_blank" href="https://www.linkedin.com/profile/view?id=320229477">
+                                <img src="/images/linkedin_nav.png" width="25px" height="25px">
+                            </a>
+                        </p>
+                        <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAN7AAAAJDg0NTYzODgwLWFkZTEtNDlkMy1hNTNhLWRkZmJjNDEzN2FhZA.jpg" width="200px" height="200px">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <!-- #contact -->
+            <a id="contact" class="a-static-offset"></a>
+            <h1 style="font-family: 'Helvetica Neue Light', sans-serif; font-weight: 100;">Contact Us</h1>
+
+            <div class="row">
+                <div class="col-md-offset-1 col-md-11">
+
+                    <div class="col-md-12">
+                        <address>
+                            <strong>UBO, Inc.</strong><br>
+                            5345 Alyssum ct.<br>
+                            Santa Rosa, CA 95403<br>
+                        </address>
+                    </div>
+
+                    <div class="col-md-12">
+                        <address>
+                            <strong>Email</strong><br>
+                            <a href="mailto:support@ubo.us">support@ubo.us </a>
+                        </address>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<footer style="position: relative; top: 500px">
+
+</footer></body>
+</html>
