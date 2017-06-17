@@ -72,14 +72,6 @@ define(['/public/scripts/lib/uuid.js'], function(uuid) {
                 utils.uGet(fullUrl, function(data){
                     ko.components.defaultLoader.loadTemplate(name, data, callback);
                 });
-                //var query = {
-                //    type: '00000000-0000-0000-0000-000000009000',
-                //    name: name
-                //};
-                //utils.data_get(query, function(data){
-                //    var tmpl = _.first(data).template;
-                //    ko.components.defaultLoader.loadTemplate(name, tmpl, callback);
-                //});
             } else {
                 // Unrecognized config format. Let another loader handle it.
                 callback(null);

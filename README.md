@@ -1,1 +1,1 @@
-# Knockout Template
+# Knockout SPA Template

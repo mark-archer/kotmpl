@@ -4,7 +4,9 @@
   "description": "template for SPA app with KnockoutJS as main framework",
   "main": "server.js",
   "dependencies": {
-    "underscore": "^1.8.3"
+    "cookies": "^0.7.0",
+    "underscore": "^1.8.3",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {},
   "scripts": {

@@ -23,11 +23,10 @@ function sessionsSave(){
     fs.writeFileSync(sessionsFileName,utils.dataToString(sessions),"utf8");
 }
 
-var globalHandler = expr[0];
-var port = expr[1];
+//var globalHandler = expr[0];
+var port = 3000;
 
 var server = http.createServer(function (req, res) {
-    //cout('request received: ' + (new Date()));
 
     var cookies = new Cookies(req, res);
     var sid = cookies.get('sid');
@@ -35,7 +34,7 @@ var server = http.createServer(function (req, res) {
     if(!session){
         sid = uuid.v4();
         sessions[sid] = {id:sid,authenticated:false,issDT:Date.now()};
-        cookies.set('host_token',sid);
+        cookies.set('sid',sid);
         session = sessions[sid];
         sessionsSave();
     }
@@ -44,6 +43,21 @@ var server = http.createServer(function (req, res) {
     var url = req.url;
 
     console.log(session.id + " " + verb + " " + url);
+
+    if(verb === "GET"){
+        if(url.startsWith("/public")){
+            var file = fs.readFileSync("." + url);
+            if(url.toLowerCase().endsWith(".css"))
+                res.writeHeader(200, {"Content-Type": "text/css"});
+            else
+                res.writeHeader(200, {"Content-Type": "text/html"});
+            return res.end(file);
+        }
+        var appHtml = fs.readFileSync("./public/app.html", "utf8");
+        res.writeHeader(200, {"Content-Type": "text/html"});
+        return res.end(appHtml);
+    }
+
 
     var postData; // todo: post data
 
@@ -60,4 +74,4 @@ var server = http.createServer(function (req, res) {
     });
 });
 server.listen(port);
-callback('server listening on port ' + port);
+console.log('server listening on port ' + port);
